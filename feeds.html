@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> My Book </title>
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+	<div id="header">
+		<div id = "left">
+			<h3>My Book</h3>
+		</div>
+		<form id = "right">
+		
+				<input type="text" id = "username" placeholder = "User name">
+				<input type="password" id = "password" placeholder = "password">
+		</form>
+	</div>
+	<center>
+
+	<div id="feeds">
+		<form>
+		<h1>Feeds</h1>
+			<input type="text" size="70" id = "feedsText" placeholder = "Text feed or URL feed">
+			<button onClick = "pushFeedsIntoMemory(document.getElementById('feedsText'));"> Post </button>
+		</form>
+	</div>		
+
+	</center>
+	
+	<div id="nav">
+		<p><a href="feeds.html" onClick="loadFeedsPage(); " >   Feed </a></p>
+		<p><a href="profile.html" onClick="loadProfilePage();"> Profile </a></p>
+		
+		<p> Dummy  </p>
+	</div>
+
+	<div id="section">
+
+	</div>
+	<script type="text/javascript" src="feeds.js"></script>
+</body>
+</html>

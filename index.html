@@ -5,22 +5,30 @@
 	<link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 <body>
-	<div >
-		<h1> My Book </h1>
-		<form>
+
+<div id="header">
+	<div id = "left">
+		<h3>My Book</h3>
+	</div>
+	<form id = "right" action="feeds.html">
 			<input type="text" id = "username" placeholder = "User name">
 			<input type="password" id = "password" placeholder = "password">
-			<button onClick="validateCredentials(document.getElementById('username'),document.getElementById('password') );"> SignIn </button>	
-			<p><a href="#" onClick="functionOne(password);">SignIn</a></p>
-		</form>
-	</div>
+			<button onClick="validateCredentials(document.getElementById('username'),document.getElementById('password'));" 
+					action = "return isUserValidated"> SignIn </button>
+	</form>
+</div>
 
-	<div>
-		 <img src="mean-800x540.png" alt="Mean Architecture" style="width:500px;height:400px">
-	</div>
+<div id="section">
+
+</div>
+
+<div id="footer">
+	Talent improving exercise, OFS
+</div>
+
 <script type="text/javascript" src="script.js"></script>
+
 </body>
 </html>
 
 
-<input type="button" onclick="document.location='http://someplace.com'" />
