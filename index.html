@@ -2,19 +2,20 @@
 <html>
 <head>
 	<title> My Book </title>
-	<link rel="stylesheet" type="text/css" href="mystyle.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/mystyle.css">
 </head>
 <body>
 
-<div id="header">
-	<div id = "left">
+<div class="header">
+	<div class = "left">
 		<h3>My Book</h3>
 	</div>
-	<form id = "right" action="feeds.html">
+	<form id = "right" >
 			<input type="text" id = "username" placeholder = "User name">
 			<input type="password" id = "password" placeholder = "password">
-			<button onClick="validateCredentials(document.getElementById('username'),document.getElementById('password'));" 
-					action = "return isUserValidated"> SignIn </button>
+			<button onClick="loginUser(document.getElementById('username'),document.getElementById('password'));"> SignIn </button>
+			<button onClick="logOutUser();"> Logout </button>
+					<!--action = "return isUserValidated"  action="feeds.html" -->
 	</form>
 </div>
 
@@ -22,11 +23,22 @@
 
 </div>
 
-<div id="footer">
+<div class="footer">
 	Talent improving exercise, OFS
 </div>
 
-<script type="text/javascript" src="script.js"></script>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/feeds.js"></script>
+<script type="text/javascript" src="js/profile.js"></script>
 
 </body>
 </html>

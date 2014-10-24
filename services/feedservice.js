@@ -1,0 +1,6 @@
+//feedService.js
+
+createFeedService(){
+	
+
+}

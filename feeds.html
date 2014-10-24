@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title> My Book </title>
-	<link rel="stylesheet" type="text/css" href="mystyle.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/mystyle.css">
 </head>
 <body>
 	<div id="header">
@@ -17,15 +17,17 @@
 	</div>
 	<center>
 
-	<div id="feeds">
+
+	<div class="feeds">
 		<form>
 		<h1>Feeds</h1>
-			<input type="text" size="70" id = "feedsText" placeholder = "Text feed or URL feed">
-			<button onClick = "createFeedo(document.getElementById('feedsText'));"> Post </button>
+			<input type="text" size="250 px" align = "center" id = "feedsText" placeholder = "Text feed or URL feed">
+			<button onClick = "createFeeds(document.getElementById('feedsText'));"> Post </button>
+			<div id="feedsArea" class = "feedsArea">	 </div>
+			<div id="loadFeeds" class = "feedList">	 </div>
 		</form>
 	</div>		
 
-	<div id = "div1"> This is a dynamicaly created content </div>
 
 	</center>
 	
@@ -36,7 +38,7 @@
 		<p> Dummy  </p>
 	</div>
 
-	<script type="text/javascript" src="feeds.js"></script>
+	<script type="text/javascript" src="js/feeds.js"></script>
 </body>
 </html>
 
