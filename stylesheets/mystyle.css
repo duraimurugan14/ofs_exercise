@@ -1,11 +1,10 @@
-
 /* CSS for Header and Footer */
-#header {
+.header {
     background-color:aqua;
     color:black;
     padding:5px;
 }
-#footer {
+.footer {
     background-color:black;
     color:white;
     clear:both;
@@ -15,7 +14,7 @@
 
 
 
-#nav {
+.nav {
     line-height:30px;
     background-color:#eeeeee;
     height:150px;
@@ -23,20 +22,20 @@
     float:left;
     padding:5px; 
 }
-#section {
+.section {
     width:350px;
     float:left;
     padding:10px; 
 }
 
-#right {
+.right {
     text-align:right;
 }
-#left{
+.left{
     text-align:left;
 }
 
-#feedsText{
+.feedsText{
     text-align:center;  
     width:500px;
     height:22px;

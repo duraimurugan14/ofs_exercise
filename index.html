@@ -1,46 +1,136 @@
+<!-- My Book - Durai -->
+
+
 <!DOCTYPE html>
 <html>
-<head>
-	<title> My Book </title>
-	<link rel="stylesheet" type="text/css" href="stylesheets/mystyle.css">
-</head>
-<body>
+	<head>
+		<title> My Book </title>
+		<link rel="stylesheet" type="text/css" href="stylesheets/mystyle.css">
+		<script type="text/javascript" src="js/feeds.js"></script>
+		<script type="text/javascript" src="js/profile.js"></script>
+		<script type="text/javascript" src="js/login.js">  </script>
 
-<div class="header">
-	<div class = "left">
-		<h3>My Book</h3>
+	</head>
+	<body>
+
+	<div id = "loginView">
+		<div class="header">
+			<div class = "left">
+				<h3>My Book</h3>
+			</div>
+
+			<div>
+				<div name="loginForm">
+				<!--form name="loginForm" action = "feed.html" onsubmit="return userValidated" -->
+						<input type="text" id = "username" placeholder = "User name">
+						<input type="password" id = "password" placeholder = "password">
+						<input type="button" name="signIn"  value="Sign In" onclick="loginUser(document.getElementById('username'),document.getElementById('password'))">	
+				</div>	
+
+			</div>
+
+			<div>Load image link here</div>
+		</div>
 	</div>
-	<form id = "right" >
-			<input type="text" id = "username" placeholder = "User name">
-			<input type="password" id = "password" placeholder = "password">
-			<button onClick="loginUser(document.getElementById('username'),document.getElementById('password'));"> SignIn </button>
-			<button onClick="logOutUser();"> Logout </button>
-					<!--action = "return isUserValidated"  action="feeds.html" -->
-	</form>
-</div>
 
-<div id="section">
+<!-- View for Feeds Page -->
+	<div id ="feedsView">
+			<div class = "header">
+				<div class ="header1">
+					<h2>MY BOOK</h2>
+				</div>
+				<div class ="header2">
+					<div class = "header4">
+						User Name :  <a id = "feeduserName"></a>
+					</div>
+					<div class = "header5">
+						<input type="button" name="signOut"  value="Sign Out" align = "right" onClick="defaultCurrentViewTo('loginView')">	
+					</div>
+					
+				</div>						
+			</div>
 
-</div>
+			<div class = "feedPage">
+				<div class = "nav">
+					<input type="button" name="feed"  value="Feed  " onclick="defaultCurrentViewTo('feedsView')">
+					<input type="button" name="profile"  value="Profile" onclick="defaultCurrentViewTo('profileView')">
+				</div>
+				<div id="feed">
+					<h2>Feed</h2>
+					<input type = "text" id="feedText">
+					<input type = "button" id = "btnPost" value="Post" onClick="createFeeds(document.getElementById('feedText'))"><br>
+					<ul id="feedList" style="list-style-type:none"></ul> 
+				</div>						
+			</div>		
 
-<div class="footer">
-	Talent improving exercise, OFS
-</div>
+<!-- End Of Feeds -->
+		<div class = "footer">
+			Talent Improving exercise, OFS
+		</div>	
+	</div>
 
 
 
+	<div id ="profileView">	
+			<div class = "header">
+				<div class ="header1">
+					<h2>MY BOOK</h2>
+				</div>
+				<div class ="header2">
+					<div class = "header4">
+						User Name :  <a id = "profileuserName"></a>
+					</div>
+					<div class = "header5">
+						<input type="button" name="signOut"  value="Sign Out" align = "right" onClick="defaultCurrentViewTo('loginView')">	
+					</div>
+					
+				</div>						
+			</div>
 
+			<div class = "feedPage">
+				<div class = "nav">
+					<input type="button" name="feed"  value="Feed  " onclick="defaultCurrentViewTo('feedsView')">
+					<input type="button" name="profile"  value="Profile" onclick="defaultCurrentViewTo('profileView')">
+				</div>
+				<div class="feedPost">
+					<table>
+						<tr>
+							<td><div class = "userIcon"></div></td>
+							<td>
+								<table>
+									<tr><td>*<input id = "Profilename" type="text" name="f"  placeholder="Name" align = "center"></td></tr>
+									<tr><td>*<input id = "age" type="text" name="f"  placeholder="Age" align = "center" onkeypress='validateNumber(event)'></td><tr>
+									<tr><td>*<input id = "phone" type="text" name="f"  placeholder="Phone" align = "center" onkeypress='validateNumber(event)'></td><tr>
+									<tr><td>*<input id = "email" type="text" name="f"  placeholder="Email" align = "center"></td><tr>
+									<tr><td><textarea id = "address" rows="4" placeholder="Address"></textarea></td><tr>
+									<tr><td><input id = "fileName" type="text" name="f"  placeholder="Profile Image" align = "center"></td>
+									<td><input type="file" name="p"  value="Select" id="profileImage" style="display: none;"  onchange="handleFiles();">
+										<input type="button" value="Browse..." onclick="document.getElementById('profileImage').click();" />
+									</td></tr>								
 
+									<tr></tr><tr></tr>
+									<tr><td></td><td><input type="button" name="p"  value="Save" onclick="saveProfile();"></td></tr>
+								
+								</table>
+							</td>
+							<td>
+								<img id="preview" src="" width="152px" height="229px"></img>
+							</td>
+							<td> <td><div class = "userIcon"></div></td></td>
+						</tr>
+					</table>
+					<div id="loadFeeds" class = "feedlist">	
+					</div>
+				</div>
+				<div class = "footer">
+					Talent Improving exercise, OFS
+				</div>
+			</div>	
+	</div>
 
-
-
-
-
-<script type="text/javascript" src="js/login.js"></script>
-<script type="text/javascript" src="js/feeds.js"></script>
-<script type="text/javascript" src="js/profile.js"></script>
-
+		<script>
+			defaultCurrentViewTo("loginView");
+		</script>
 </body>
+
 </html>
-
-

@@ -1,4 +1,3 @@
-
 "use strict";
 
 var isUserValidated = false;
@@ -16,14 +15,9 @@ var generateUid = function () {
 };
 
 
-function MyBook(){
-		this.username = name;
-		this.password = password;
-		this.feeds = {};
-		this.userId = generateUid();
-}
 
-var myBook = new MyBook();
+
+
 
 function validateUserCredentials(userName, userPassword) {
 	if(userName.length > 8){
@@ -35,8 +29,7 @@ function validateUserCredentials(userName, userPassword) {
 			alert("Password you entered is too short!");
 			isUserValidated = false;
 		}
-		else if (userPassword === "admin22") {
-			alert("You are logged in!");	
+		else if (userPassword === "admin22") {	
 			isUserValidated = true;
 		}
 	}
@@ -52,15 +45,65 @@ function logOutUser(){
 }
 
 
+// function MyBook(){
+// 	this.userArray = [];
+// 	this.userArray.push(new )
+// }
 
-
-function validateCredentials(userNameData, passwordData) { 
+// var myBook = new MyBook();
+function loginUser(userNameData, passwordData) { 
 	var name = userNameData.value;
 	var password = passwordData.value; 
 	validateUserCredentials(name, password);
+	// createUserObject();
 	if (isUserValidated === true) {
-
+		defaultCurrentViewTo("feedsView");
 	}
 }
 
+
+function defaultCurrentViewTo(currentPage){	
+
+//Change this as a switch block	
+	var view1 = document.getElementById("loginView");
+	var view2 = document.getElementById("feedsView");         	
+	var view3 = document.getElementById("profileView");	
+	view1.style.display = 'none';
+	view2.style.display = 'none';
+	view3.style.display = 'none';	
+	if(currentPage === "loginView"){	
+		view1.style.display = 'block';	
+	}
+	else if(currentPage === "feedsView"){
+		view2.style.display = 'block';
+	} else{	
+		view3.style.display = 'block';	
+		loadProfile();
+	}
+}
+
+
+
+function defaultCurrentViewTo (currentPage){	
+
+//Change this as a switch block	
+	var view1 = document.getElementById("loginView");
+	var view2 = document.getElementById("feedsView");         	
+	var view3 = document.getElementById("profileView");	
+	view1.style.display = 'none';
+	view2.style.display = 'none';
+	view3.style.display = 'none';	
+	if(currentPage === "loginView")
+	{	
+		view1.style.display = 'block';	
+	}
+	else if(currentPage === "feedsView")
+	{
+		view2.style.display = 'block';
+	} else 
+	{	
+		view3.style.display = 'block';	
+		loadProfile();
+	}
+}
 
