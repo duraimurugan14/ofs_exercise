@@ -1,0 +1,130 @@
+/* CSS for Header and Footer */
+.header {
+    background-color:#0099CC;
+    color:black;
+    padding:5px;
+}
+.footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}
+
+
+/* css for signout button */
+.btnSignOut{        
+    float:right;
+}
+
+
+/* css for left nav bar in feed and profile page */
+.nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:450px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+
+
+.right {
+    text-align:right;
+}
+.left{
+    text-align:left;
+}
+
+
+/* CSS for Feed Page */
+.feedsText{
+    text-align:center;  
+    width:500px;
+    height:22px;
+    background-color:white;
+    float:center;    
+}
+
+.feeds{
+    text-align:center;  
+    width:900px;
+    height:400px;
+    background-color:grey;
+    float:center;    
+}
+.feedList{
+    text-align:right;  
+    width:700px;
+    height:60px;
+    background-color:white;
+    float:left;     
+}
+
+#feed {
+    width:auto;
+    float:left;
+    padding:10px;   
+}
+
+#textFeedItem{
+    width:800px;
+    height:auto;
+    background-color:yellow;
+    background-color:#B7AFA3;
+}
+#urlFeedItem{
+    width:800px;
+    height:auto;
+    background-color:#E8D0A9;
+}
+
+#feedValues{
+    font-size: 35px;
+    padding-left: 20px;
+    padding-right: 30px;
+    font-family: cursive;
+}
+
+#feedValuesURL{
+    font-size: 35px;
+    padding-left: 20px;
+    padding-right: 30px;
+    font-family: cursive;
+    text-decoration: underline;
+}
+
+#feedTime{
+    font-size: 20px;
+    font-style: italic;
+}
+
+
+#closeBtn{
+    height: 40px;
+    width: 35px;
+}
+
+#userImage{
+    height: 65px;
+    width: 55px;
+}
+
+.padding {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-style: dotted;
+    border-width: 3px;
+}
+
+.btnFeed{
+    text-align: center;
+}
+
+/* CSS for Profile Page */
+.btnProfile{
+    text-align: center;
+}

@@ -1,9 +1,8 @@
 //feeds.js
 
-
 "use strict";
 
-//Create feed object
+//creates feed object
 var feeds = [], feedType = "";
 var feed = { _uId:undefined, _feedType:undefined, _timeStamp:undefined};
 function Feed(id, type, time) {
@@ -17,15 +16,13 @@ Feed.protype = {
 };
 
 
-
+//checks the type of the feed entered by the user
 function validateFeedEntry(feedData){
 	if(feedData.length > 0){
-		var posHTTP = feedData.indexOf("http");
-		if (posHTTP === -1) {
-			feedType = "text";
-		}
-		else{
+		if(validUrl(feedData)){
 			feedType = "url";
+		}else{
+			feedType = "text";
 		}
 		return feedType;
 	}
@@ -35,38 +32,89 @@ function validateFeedEntry(feedData){
 	}
 }
 
-function createFeeds(feedsText) { 
-  var count = 0, FeedObject = undefined;
-  var feedTextInfo = feedsText.value;
-  validateFeedEntry(feedTextInfo);
-  var timeStamp = new Date();
-  var feed = new Feed(count, feedType, timeStamp);
-  FeedObject = Object.create(feed);
-  FeedObject.content = feedTextInfo;
-  postFeed(FeedObject);
-  //loadFeeds(feedData);
+
+//validates the URL using Regex
+function validUrl(str) {
+	var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+	'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+	'((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+	'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+	'(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+	'(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+	if(!pattern.test(str)) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 
+//formats the current time to desired format
+function formatAMPM(date) {
+	var hours = date.getHours();
+	var minutes = date.getMinutes();
+	var ampm = hours >= 12 ? 'pm' : 'am';
+	hours = hours % 12;
+	hours = hours ? hours : 12; // the hour '0' should be '12'
+	minutes = minutes < 10 ? '0'+minutes : minutes;
+	var formattedAMPM = hours + ':' + minutes + ' ' + ampm;
+	return formattedAMPM;
+}
+
+
+// creates feed objects and calls postFeed() method
+function createFeeds(feedsText) { 
+  	var count = 0, FeedObject = undefined;
+ 	var feedTextInfo = feedsText.value;
+  	validateFeedEntry(feedTextInfo);
+	var currentTime = new Date();
+	var year = currentTime.getFullYear();
+	var month = currentTime.getMonth() + 1;
+	var date = currentTime.getDate();
+	var time = formatAMPM(currentTime);
+	var timeStamp = month+"/"+date+"/"+year+" "+time;
+	var feed = new Feed(count, feedType, timeStamp);
+  	FeedObject = Object.create(feed);
+  	if (feedTextInfo == ""){
+  		return false
+  	}
+  	else{
+		FeedObject.content = feedTextInfo;
+		postFeed(FeedObject);
+  	}
+}
+
+
+// pushes the feed object into the array
 function postFeed(feed){
 	feeds = feeds || [];
 	feeds.push(feed);
-	document.getElementById("feedText").value = ""; 
-	displayFeeds();
+	document.getElementById("feedsText").value = ""; 
+	loadFeedData();
 }
+
 
 function getFeeds() {
 	feeds = feeds || [];
 }
 
+
+//deletes the feed based on the feed id (user selection)
 function deleteFeed(id) {
 	feeds.splice(id, 1);
-	displayFeeds();
+	loadFeedData();
 }
 
 
-function displayFeeds() {
-	
+//opens the url feed in a new tab in the browser
+function openFeedInBrowser(i) {
+	var UrlFeed = feeds[i];
+	window.open(UrlFeed.content);
+}
+
+
+//loads the feed data for the user to view
+function loadFeedData() {
 	var listStr = "";
 	if(feeds.length == 0) {
 		document.getElementById("feedList").innerHTML = "";
@@ -74,26 +122,25 @@ function displayFeeds() {
 	}
 	for (var i = 0; i < feeds.length; i++) {
 			var currentFeed = feeds[i];
-			var listStartTag = "<li>";
+			var listStartTag = "<br><li>";
 			if (currentFeed._feedType == "text") {
-				var divStartTag = "<div id=\"textitem\">";
+				var divStartTag = "<div class =\"padding\" id=\"textFeedItem\">";
 			} else {
-				var divStartTag = "<div id=\"urlitem\">";
+				var divStartTag = "<div class=\"padding\" id=\"urlFeedItem\">";
 			}
 			var userImageTag = "<img src=\"assets\/user_icon.jpeg\" id=\"userImage\" align=\"center\">";
 			var feedValuesTag = "";
 			if (currentFeed._feedType == "text") {
 				feedValuesTag = "<label id=\"feedValues\">"+currentFeed.content+"</label>";
 			} else {
-				feedValuesTag = "<label id=\"feedValues\" onClick=\"navigateTo( "+i+" )\">"+currentFeed.content+"</label>"; 
+				feedValuesTag = "<label id=\"feedValuesURL\" onClick=\"openFeedInBrowser( "+i+" )\">"+currentFeed.content+"</label>"; 
 			}
-			var closeBtmTag = "<img src=\"assets\/remove_icon.jpeg\" id=\"closeBtn\" onClick=\" deleteFeed("+ i +")\">";		
-			var timeTag = "<label id=\"feedTime\">"+"10/21/2014 12:30 pm"+"</label>";
+			var closeBtmTag = "<img src=\"assets\/remove_icon.jpeg\" id=\"closeBtn\" align=\"right\" onClick=\" deleteFeed("+ i +")\">";		
+			var timeTag = "<label id=\"feedTime\">"+currentFeed._timeStamp+"</label>";
 			var divEndTag = "</div>";
 			var listEndTag = "</li>";
-			var listItem = listStartTag + divStartTag + userImageTag + feedValuesTag + closeBtmTag + timeTag + divEndTag + listEndTag;
+			var listItem = listStartTag + divStartTag + userImageTag + feedValuesTag +  timeTag + closeBtmTag + divEndTag + listEndTag;
 			listStr += listItem;
-	
 			document.getElementById("feedList").innerHTML = listStr;
 	} 
 }
@@ -102,29 +149,3 @@ function displayFeeds() {
 
 
 
-// function service(currentUser,type){
-// 	var feeds = currentUser.feeds;
-// 	var profile =currentUser.profile;
-// 	var ret;
-	
-// 	if(type === "CreateFeed"){	
-// 		ret =  function(feed){
-// 			feeds.push(feed);			
-// 			reloadFeeds();
-// 		};
-// 	} else if (type === "DeleteFeed"){
-// 			ret =  function(id){
-// 			feeds.splice(id,1);	
-// 			var myNode = document.getElementById("loadFeeds");
-// 			while (myNode.firstChild) {
-// 				myNode.removeChild(myNode.firstChild);
-// 			}			
-// 			reloadFeeds();
-// 		};
-// 	} else {
-// 		ret = function(name,age,phone,email,address){
-// 			profile.saveProfile(name,age,phone,email);
-// 		};
-// 	}
-// 	return ret;
-// }

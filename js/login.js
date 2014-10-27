@@ -1,24 +1,10 @@
+//login.js
+
 "use strict";
 
 var isUserValidated = false;
 
-
-var generateUid = function () {
-    /// Creates a unique id for identification purposes.
-    /// <param name="separator" type="String" optional="true">
-    /// The optional separator for grouping the generated segmants: default "-".    
-    var delim = "-";
-    function S4() {
-        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    }
-    return (S4() + S4() + delim + S4() + delim + S4());
-};
-
-
-
-
-
-
+//validates the user credentials
 function validateUserCredentials(userName, userPassword) {
 	if(userName.length > 8){
 		alert("User Name cannot exceed 8 characters");
@@ -32,78 +18,57 @@ function validateUserCredentials(userName, userPassword) {
 		else if (userPassword === "admin22") {	
 			isUserValidated = true;
 		}
+		else{
+			alert("The passowrd you entered is invalid. Please check and re-enter!");
+			isUserValidated = false;
+		}
 	}
 	else{
-		alert("The user credentials you entered is invalid. Please check and re-enter");
+		alert("The username you entered is invalid. Please check and re-enter!");
 		isUserValidated = false;
 	}
 	return isUserValidated;
 }
 
+
+//logs out the user and sets the default user view to login page
 function logOutUser(){
 	isUserValidated = false;
+	defaultCurrentViewTo('loginView');
 }
 
 
-// function MyBook(){
-// 	this.userArray = [];
-// 	this.userArray.push(new )
-// }
-
-// var myBook = new MyBook();
+//sets user data to local variables and calls validateUserCredentials() for validation
 function loginUser(userNameData, passwordData) { 
 	var name = userNameData.value;
 	var password = passwordData.value; 
+	document.getElementById("feeduserName").innerHTML = name;		//sets username with welcome message at header
+	document.getElementById("profileuserName").innerHTML = name;	
 	validateUserCredentials(name, password);
-	// createUserObject();
 	if (isUserValidated === true) {
 		defaultCurrentViewTo("feedsView");
 	}
 }
 
 
-function defaultCurrentViewTo(currentPage){	
-
-//Change this as a switch block	
-	var view1 = document.getElementById("loginView");
-	var view2 = document.getElementById("feedsView");         	
-	var view3 = document.getElementById("profileView");	
-	view1.style.display = 'none';
-	view2.style.display = 'none';
-	view3.style.display = 'none';	
-	if(currentPage === "loginView"){	
-		view1.style.display = 'block';	
+//Sets the current view for the user 
+function defaultCurrentViewTo(currentView){	
+	document.getElementById("loginView").style.display = 'none';
+	document.getElementById("feedsView").style.display = 'none';
+	document.getElementById("profileView").style.display = 'none';
+	switch(currentView){
+		case "feedsView" : 
+			document.getElementById("feedsView").style.display = 'block';
+			loadFeedData();
+			break;
+		case "profileView" : 
+			document.getElementById("profileView").style.display = 'block';
+			loadProfileData();
+			break;
+		case "loginView" :
+		default:
+			document.getElementById("loginView").style.display = 'block';
+			break;
 	}
-	else if(currentPage === "feedsView"){
-		view2.style.display = 'block';
-	} else{	
-		view3.style.display = 'block';	
-		loadProfile();
-	}
-}
-
-
-
-function defaultCurrentViewTo (currentPage){	
-
-//Change this as a switch block	
-	var view1 = document.getElementById("loginView");
-	var view2 = document.getElementById("feedsView");         	
-	var view3 = document.getElementById("profileView");	
-	view1.style.display = 'none';
-	view2.style.display = 'none';
-	view3.style.display = 'none';	
-	if(currentPage === "loginView")
-	{	
-		view1.style.display = 'block';	
-	}
-	else if(currentPage === "feedsView")
-	{
-		view2.style.display = 'block';
-	} else 
-	{	
-		view3.style.display = 'block';	
-		loadProfile();
-	}
-}
+}	
 
