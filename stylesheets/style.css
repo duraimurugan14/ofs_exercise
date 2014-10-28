@@ -30,6 +30,15 @@
 }
 
 
+.profileArea{
+    text-align:center;  
+    width:600px;
+    height:300px;
+    background-color:grey;
+    float:left;    
+}
+
+
 .right {
     text-align:right;
 }

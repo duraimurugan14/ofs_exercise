@@ -51,7 +51,7 @@
 						<input type="button" name="profile" id = "btnProfile"  value="Profile" onclick="defaultCurrentViewTo('profileView')">
 					</div>
 					<div id="feed">
-						<input type = "text" id="feedsText">
+						<input type = "text" id="feedsText" style="width:750px;" align = "center" placeholder = "Enter your feed here">
 						<input type = "button" id = "btnPost" value="Post" onClick="createFeeds(document.getElementById('feedsText'))"><br>
 						<ul id="feedList" style="list-style-type:none"></ul> 
 					</div>						
@@ -76,15 +76,15 @@
 					</div>						
 				</div>
 
-				<div class>
+				<div>
 					<div class = "nav">
 						<input type="button" name="feed"  value="Feed  " onclick="defaultCurrentViewTo('feedsView')">
 						<input type="button" name="profile"  value="Profile" onclick="defaultCurrentViewTo('profileView')">
 					</div>
-					<div>
+					<div class="profileArea">
 						<table>
 							<tr>
-								<td><div class = "userIcon"></div></td>
+								
 								<td>
 									<table>
 										<tr><td>*<input id = "profileName" type="text" placeholder="Name" align = "center"></td></tr>
@@ -104,7 +104,7 @@
 								<td>
 									<img id="preview" src="" width="152px" height="229px"></img>
 								</td>
-								<td> <td><div class = "userIcon"></div></td></td>
+								
 							</tr>
 						</table>
 						
